@@ -1,0 +1,32 @@
+<div class="mt-4">
+    <div class="p-3" hidden>
+        <p class="text-center display-5">Register Here</p>
+        <hr>
+    </div>
+    <form (ngSubmit)='register()'>
+        <mat-form-field class="full-width-input">
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="virendra patel" value="" name="name" [(ngModel)]='user.name'>
+        </mat-form-field>
+        <mat-form-field class="full-width-input">
+            <mat-label>Email Address</mat-label>
+            <input matInput placeholder="virendra@gmail.com" type="email" name="email" [(ngModel)]='user.email'>
+        </mat-form-field>
+        <mat-form-field class="full-width-input">
+            <mat-label>Password</mat-label>
+            <input matInput placeholder="***********" name="password" [(ngModel)]='user.password'>
+        </mat-form-field>
+        <mat-form-field class="full-width-input">
+            <mat-label>Re-enter Password</mat-label>
+            <input matInput placeholder="***********" name="password2" [(ngModel)]='user.password2'>
+        </mat-form-field>
+        <br />
+        <br />
+        <section>
+            <button class="w-50 bg-dark text-light" mat-raised-button color='primary'>
+                Register
+            </button>
+        </section>
+
+    </form>
+</div>

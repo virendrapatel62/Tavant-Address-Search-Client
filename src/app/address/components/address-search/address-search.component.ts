@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { EMPTY, Observable } from 'rxjs';
@@ -25,7 +26,7 @@ export class AddressSearchComponent implements OnInit {
   @Output('onChange')
   onChange: EventEmitter<AddressResponse> = new EventEmitter();
 
-  constructor(private mapService: MapService) {
+  constructor(private mapService: MapService, private http: HttpClient) {
     this.filteredOptions = new Observable();
   }
 

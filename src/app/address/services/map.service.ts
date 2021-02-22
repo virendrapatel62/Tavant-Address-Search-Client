@@ -17,19 +17,38 @@ interface AuthResponseType {
   providedIn: 'root',
 })
 export class MapService {
-  private addressUrl = 'http://localhost:8080/api/map/addresses';
+  private tokenUrl =
+    '/api/security/oauth/token?grant_type=client_credentials&client_id=K9FcE7rTjKaqju2XuWlLrzxXYspxv4s-A9hdogM0WDmcUVwsFo0wBA==&client_secret=Lnb4Nczh7cGDCx-MmiftR99nD8YZcpUeMLGlwmXgt0PW0P_jU7UJQhVRmghgP-Rk';
+  private baseAddressUrl = '/api/places/geocode';
+  private authResponse: AuthResponseType;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.generateToken();
+  }
 
   getAddresses(address: string) {
-    let temp = this.addressUrl;
-    temp = `${temp}?address=${address}&itemCount=10`;
-
-    return this.http.get(temp).pipe(
-      map((values) => {
-        const result = <{ copResults: [AddressResponse] }>values;
-        return result.copResults;
+    return this.http
+      .get(`${this.baseAddressUrl}?address=${address}&itemCount=5`, {
+        headers: {
+          Authorization: `${this.authResponse.token_type} ${this.authResponse.access_token}`,
+        },
       })
-    );
+      .pipe(
+        map((res: any) => {
+          return <AddressResponse[]>res.copResults;
+        })
+      );
+  }
+
+  private generateToken() {
+    this.http.post(this.tokenUrl, {}).subscribe({
+      next: (res) => {
+        this.authResponse = <AuthResponseType>res;
+      },
+      error: (err) => {
+        console.error(err);
+        alert('Cant Get Token From Map My India');
+      },
+    });
   }
 }

@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="mt-4 pt-4">
+        <div class="col-lg-5 mx-auto shadow rounded p-4">
+            <mat-tab-group mat-align-tabs="center">
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        <span>Login </span>
+                        &nbsp;
+                        <mat-icon class="example-tab-icon">lock</mat-icon>
+                    </ng-template>
+                    <div class="p-3">
+                        <app-login-form></app-login-form>
+                    </div>
+                </mat-tab>
+
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                        <span> Register</span>
+                        &nbsp;
+                        <mat-icon class="example-tab-icon">person_add</mat-icon>
+                    </ng-template>
+                    <div class="p-3">
+                        <app-register-form>
+                        </app-register-form>
+                    </div>
+                </mat-tab>
+
+            </mat-tab-group>
+        </div>
+    </div>
+</div>

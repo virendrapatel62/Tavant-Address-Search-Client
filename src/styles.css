@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+.full-width-input {
+  width: 100%;
+}
+
+.display-5 {
+  font-size: 40px;
+  font-weight: 400;
+}

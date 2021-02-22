@@ -1,0 +1,17 @@
+{
+  "/api/security/oauth/*": {
+    "target": "https://outpost.mapmyindia.com",
+    "secure": false,
+    "logLevel": "debug"
+  },
+  "/api/places/geocode/*": {
+    "target": "https://atlas.mapmyindia.com",
+    "secure": false,
+    "logLevel": "debug"
+  },
+  "/api/*": {
+    "target": "http://localhost:8080",
+    "secure": false,
+    "logLevel": "debug"
+  }
+}

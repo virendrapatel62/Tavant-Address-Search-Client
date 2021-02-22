@@ -9,11 +9,14 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MapService } from './services/map.service';
+import { AddressFormComponent } from './components/address-form/address-form.component';
+import { AddressService } from './services/address.service';
+import { TokenInterceptor } from '../core/interceptors/token.interceptor';
 
 @NgModule({
-  declarations: [AddressSearchComponent],
+  declarations: [AddressSearchComponent, AddressFormComponent],
   imports: [
     CommonModule,
     AddressRoutingModule,
@@ -25,7 +28,15 @@ import { MapService } from './services/map.service';
     MatInputModule,
     HttpClientModule,
   ],
-  providers: [MapService],
-  exports: [AddressSearchComponent],
+  providers: [
+    MapService,
+    AddressService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true,
+    },
+  ],
+  exports: [AddressSearchComponent, AddressFormComponent],
 })
 export class AddressModule {}

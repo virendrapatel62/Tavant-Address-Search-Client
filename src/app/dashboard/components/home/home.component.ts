@@ -10,8 +10,4 @@ export class HomeComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
-
-  addressChanged(address: AddressResponse) {
-    console.log(address);
-  }
 }
