@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { EMPTY, Observable } from 'rxjs';
 import {
@@ -9,6 +9,7 @@ import {
   switchMap,
   tap,
 } from 'rxjs/operators';
+import { AddressResponse } from '../../models/address-response';
 import { MapService } from '../../services/map.service';
 
 export interface User {
@@ -21,6 +22,9 @@ export interface User {
   styleUrls: ['./address-search.component.css'],
 })
 export class AddressSearchComponent implements OnInit {
+  @Output('onChange')
+  onChange: EventEmitter<AddressResponse> = new EventEmitter();
+
   constructor(private mapService: MapService) {
     this.filteredOptions = new Observable();
   }
@@ -33,9 +37,7 @@ export class AddressSearchComponent implements OnInit {
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
       tap((value) => value),
-      map((value) => {
-        return typeof value == 'string' ? value : null;
-      }),
+
       switchMap((val) => {
         return this.filter(val);
       })
@@ -43,7 +45,7 @@ export class AddressSearchComponent implements OnInit {
   }
 
   displayFn(address: any): string {
-    console.log('display fn called ', address);
+    // console.log('display fn called ', address);
     return address && address.formattedAddress ? address.formattedAddress : '';
   }
 
@@ -52,12 +54,18 @@ export class AddressSearchComponent implements OnInit {
       return EMPTY;
     }
 
+    if (typeof value != 'string') {
+      // console.log(this.myControl.value);
+      this.onChange.emit(this.myControl.value);
+      return this.filteredOptions;
+    }
+
     console.log({ value }, '_filter');
 
     return this.mapService.getAddresses(value).pipe(
       map((response) =>
         response.filter((option) => {
-          console.log({ option });
+          // console.log({ option });
           return option.formattedAddress;
         })
       )
@@ -65,7 +73,7 @@ export class AddressSearchComponent implements OnInit {
   }
 
   submitForm() {
-    console.log('Submit Form');
-    console.log(this.myControl.value);
+    // console.log('Submit Form');
+    // console.log(this.myControl.value);
   }
 }

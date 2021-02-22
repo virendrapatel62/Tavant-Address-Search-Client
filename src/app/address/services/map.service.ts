@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { pipe } from 'rxjs';
 import { map, repeat } from 'rxjs/operators';
+import { AddressResponse } from '../models/address-response';
 
 interface AuthResponseType {
   access_token: string;
@@ -22,11 +23,11 @@ export class MapService {
 
   getAddresses(address: string) {
     let temp = this.addressUrl;
-    temp = `${temp}?address=${address}`;
+    temp = `${temp}?address=${address}&itemCount=10`;
 
     return this.http.get(temp).pipe(
       map((values) => {
-        const result = <{ copResults: [any] }>values;
+        const result = <{ copResults: [AddressResponse] }>values;
         return result.copResults;
       })
     );
