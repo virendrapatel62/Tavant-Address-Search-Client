@@ -1,0 +1,14 @@
+<h1>Address Search Component</h1>
+<form class="example-form" (ngSubmit)='submitForm()'>
+    <mat-form-field class="example-full-width">
+        <mat-label>Assignee</mat-label>
+        <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+            <mat-option *ngFor="let option of filteredOptions|async" [value]="option">
+                {{option.formattedAddress}}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+
+    <input type="submit" value="Save" class="btn btn-success">
+</form>
