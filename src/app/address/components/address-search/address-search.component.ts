@@ -17,6 +17,11 @@ export interface User {
   name: string;
 }
 
+export class AddressSearchInputEvent {
+  formControl: FormControl;
+  address: AddressResponse;
+}
+
 @Component({
   selector: 'app-address-search',
   templateUrl: './address-search.component.html',
@@ -24,14 +29,13 @@ export interface User {
 })
 export class AddressSearchComponent implements OnInit {
   @Output('onChange')
-  onChange: EventEmitter<AddressResponse> = new EventEmitter();
+  onChange: EventEmitter<AddressSearchInputEvent> = new EventEmitter();
 
   constructor(private mapService: MapService, private http: HttpClient) {
     this.filteredOptions = new Observable();
   }
 
   myControl = new FormControl();
-  options: any[] = [1, 2, 4, 5];
   filteredOptions: Observable<Array<any>>;
 
   ngOnInit() {
@@ -50,6 +54,13 @@ export class AddressSearchComponent implements OnInit {
     return address && address.formattedAddress ? address.formattedAddress : '';
   }
 
+  emitOnChangeEvent() {
+    this.onChange.emit({
+      address: this.myControl.value,
+      formControl: this.myControl,
+    });
+  }
+
   private filter(value: string | null) {
     if (!value) {
       return EMPTY;
@@ -57,7 +68,7 @@ export class AddressSearchComponent implements OnInit {
 
     if (typeof value != 'string') {
       // console.log(this.myControl.value);
-      this.onChange.emit(this.myControl.value);
+      this.emitOnChangeEvent();
       return this.filteredOptions;
     }
 

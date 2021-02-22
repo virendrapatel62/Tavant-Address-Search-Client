@@ -1,0 +1,41 @@
+<div class="container p-4">
+    <!-- Curernt fofrmatted Address -->
+
+    <div class="">
+        <app-address-property [title]="'Current Address'" [value]='address.formattedAddress'>
+        </app-address-property>
+    </div>
+
+    <!-- row 1 -->
+
+    <div class="row">
+        <div class="col m-4">
+            <app-address-property [title]="'District'" [value]='address.district'>
+            </app-address-property>
+        </div>
+        <div class="col m-4">
+            <app-address-property [title]="'State'" [value]='address.state'>
+            </app-address-property>
+        </div>
+        <div class="col m-4">
+            <app-address-property [title]="'City'" [value]='address.city'>
+            </app-address-property>
+        </div>
+    </div>
+
+    <!-- row 2 -->
+    <div class="row">
+        <div class="col m-4">
+            <app-address-property [title]="'Pincode'" [value]='address.pincode'>
+            </app-address-property>
+        </div>
+        <div class="col m-4">
+            <app-address-property [title]="'Latitude'" [value]='address.latitude'>
+            </app-address-property>
+        </div>
+        <div class="col m-4">
+            <app-address-property [title]="'Longitude'" [value]='address.longitude'>
+            </app-address-property>
+        </div>
+    </div>
+</div>

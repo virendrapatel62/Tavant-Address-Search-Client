@@ -14,9 +14,18 @@ import { MapService } from './services/map.service';
 import { AddressFormComponent } from './components/address-form/address-form.component';
 import { AddressService } from './services/address.service';
 import { TokenInterceptor } from '../core/interceptors/token.interceptor';
+import { DisplayAddressComponent } from './components/display-address/display-address.component';
+import { AddressComponent } from './components/address/address.component';
+import { AddressPropertyComponent } from './components/display-address/address-property/address-property.component';
 
 @NgModule({
-  declarations: [AddressSearchComponent, AddressFormComponent],
+  declarations: [
+    AddressSearchComponent,
+    AddressFormComponent,
+    DisplayAddressComponent,
+    AddressComponent,
+    AddressPropertyComponent,
+  ],
   imports: [
     CommonModule,
     AddressRoutingModule,
@@ -37,6 +46,6 @@ import { TokenInterceptor } from '../core/interceptors/token.interceptor';
       multi: true,
     },
   ],
-  exports: [AddressSearchComponent, AddressFormComponent],
+  exports: [AddressComponent],
 })
 export class AddressModule {}
