@@ -8,8 +8,8 @@ import { AddressService } from '../../services/address.service';
   styleUrls: ['./display-address.component.css'],
 })
 export class DisplayAddressComponent implements OnInit {
-  @Input('address')
-  address: AddressResponse;
+  @Input('addresses')
+  addresses: Array<AddressResponse>;
   constructor(private addressService: AddressService) {}
 
   ngOnInit(): void {}

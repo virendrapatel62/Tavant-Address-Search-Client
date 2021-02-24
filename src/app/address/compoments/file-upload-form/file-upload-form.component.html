@@ -1,0 +1,13 @@
+<div class="shadow p-4">
+    <h1 class="m-4">Add Addresses By File</h1>
+    <form #form (ngSubmit)='uploadFile(form)'>
+        <div>
+            <!-- <label for="formFilesm" class="form-label">Select CSV File</label> -->
+            <input (change)='selectFile($event)' name='file' class="form-control form-control-md" id="formFileLg"
+                type="file">
+        </div>
+        <div class="form-group mt-4">
+            <input type="submit" value="Upload Addresses" class="btn btn-success">
+        </div>
+    </form>
+</div>

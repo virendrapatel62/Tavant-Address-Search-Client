@@ -16,7 +16,9 @@ import { AddressService } from './services/address.service';
 import { TokenInterceptor } from '../core/interceptors/token.interceptor';
 import { DisplayAddressComponent } from './components/display-address/display-address.component';
 import { AddressComponent } from './components/address/address.component';
-import { AddressPropertyComponent } from './components/display-address/address-property/address-property.component';
+
+import { MatIconModule } from '@angular/material/icon';
+import { FileUploadFormComponent } from './compoments/file-upload-form/file-upload-form.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,7 @@ import { AddressPropertyComponent } from './components/display-address/address-p
     AddressFormComponent,
     DisplayAddressComponent,
     AddressComponent,
-    AddressPropertyComponent,
+    FileUploadFormComponent,
   ],
   imports: [
     CommonModule,
@@ -36,6 +38,8 @@ import { AddressPropertyComponent } from './components/display-address/address-p
     ReactiveFormsModule,
     MatInputModule,
     HttpClientModule,
+
+    MatIconModule,
   ],
   providers: [
     MapService,

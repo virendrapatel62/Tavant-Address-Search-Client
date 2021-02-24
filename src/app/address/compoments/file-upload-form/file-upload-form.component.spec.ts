@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddressPropertyComponent } from './address-property.component';
+import { FileUploadFormComponent } from './file-upload-form.component';
 
-describe('AddressPropertyComponent', () => {
-  let component: AddressPropertyComponent;
-  let fixture: ComponentFixture<AddressPropertyComponent>;
+describe('FileUploadFormComponent', () => {
+  let component: FileUploadFormComponent;
+  let fixture: ComponentFixture<FileUploadFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddressPropertyComponent ]
+      declarations: [ FileUploadFormComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddressPropertyComponent);
+    fixture = TestBed.createComponent(FileUploadFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -12,6 +12,7 @@ import {
 })
 export class HeaderComponent implements OnInit {
   isLoggedIn = false;
+  appname = 'Address App';
   constructor(
     private authActionService: AuthActionService,
     private tokenService: TokenService

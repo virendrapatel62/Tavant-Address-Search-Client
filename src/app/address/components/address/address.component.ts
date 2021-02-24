@@ -8,7 +8,7 @@ import { AddressService } from '../../services/address.service';
   styleUrls: ['./address.component.css'],
 })
 export class AddressComponent implements OnInit {
-  address: AddressResponse;
+  addresses: Array<AddressResponse> = [];
   constructor(private addressService: AddressService) {}
 
   ngOnInit(): void {
@@ -16,15 +16,20 @@ export class AddressComponent implements OnInit {
   }
 
   onAddressChange(address: AddressResponse) {
-    this.address = address;
+    this.addresses.push(address);
   }
 
   getAddress() {
     this.addressService.getMyAddress().subscribe({
-      next: (address) => {
-        this.address = address;
+      next: (addresses) => {
+        this.addresses = addresses;
       },
       error: (err) => {},
     });
+  }
+
+  fileDataSaved(addresses: Array<AddressResponse>) {
+    const temp = [...this.addresses, ...addresses];
+    this.addresses = [...temp];
   }
 }

@@ -1,41 +1,28 @@
-<div class="container p-4">
+<div class="">
     <!-- Curernt fofrmatted Address -->
+    <div class="p-2">
+        <div class="p-3">
+            <h3>All Addresses Added By User</h3>
+        </div>
+        <div *ngFor='let address of addresses;index as i'>
+            <div class="card mt-2">
+                <div class="card-body">
+                    <div class="card-title">
 
-    <div class="">
-        <app-address-property [title]="'Current Address'" [value]='address.formattedAddress'>
-        </app-address-property>
+                        <div class="d-flex bd-highlight">
+                            <div class="p-2 w-100 bd-highlight">{{i+1}}. {{address.formattedAddress|titlecase}}</div>
+                            <div class="p-2 flex-shrink-1 bd-highlight"><a class="mr-auto" target="_blank"
+                                    href="https://www.google.com/maps/?q={{address.latitude}},{{address.longitude}}">
+                                    <mat-icon aria-label="Example launch icon">launch</mat-icon>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- row 1 -->
-
-    <div class="row">
-        <div class="col m-4">
-            <app-address-property [title]="'District'" [value]='address.district'>
-            </app-address-property>
-        </div>
-        <div class="col m-4">
-            <app-address-property [title]="'State'" [value]='address.state'>
-            </app-address-property>
-        </div>
-        <div class="col m-4">
-            <app-address-property [title]="'City'" [value]='address.city'>
-            </app-address-property>
-        </div>
-    </div>
-
-    <!-- row 2 -->
-    <div class="row">
-        <div class="col m-4">
-            <app-address-property [title]="'Pincode'" [value]='address.pincode'>
-            </app-address-property>
-        </div>
-        <div class="col m-4">
-            <app-address-property [title]="'Latitude'" [value]='address.latitude'>
-            </app-address-property>
-        </div>
-        <div class="col m-4">
-            <app-address-property [title]="'Longitude'" [value]='address.longitude'>
-            </app-address-property>
-        </div>
-    </div>
 </div>

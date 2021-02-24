@@ -1,2 +1,19 @@
-<app-address-form (onAddressChange)='onAddressChange($event)'></app-address-form>
-<app-display-address [address]='address'></app-display-address>
+<div class="">
+    <div class="row mt-4">
+        <div class="col">
+            <div>
+                <app-address-form (onAddressChange)='onAddressChange($event)'></app-address-form>
+            </div>
+            <div class="mt-3">
+
+                <app-file-upload-form (onSuccess)='fileDataSaved($event)'></app-file-upload-form>
+            </div>
+        </div>
+
+        <div class="col">
+            <app-display-address [addresses]='addresses'></app-display-address>
+        </div>
+    </div>
+
+
+</div>
