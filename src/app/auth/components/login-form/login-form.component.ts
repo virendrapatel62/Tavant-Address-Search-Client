@@ -1,5 +1,7 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AlertService } from 'src/app/shared/services/alert.service';
 import {
   AuthActionService,
   AuthActionType,
@@ -20,7 +22,8 @@ export class LoginFormComponent implements OnInit {
     private authService: AuthService,
     private tokenService: TokenService,
     private router: Router,
-    private authActionService: AuthActionService
+    private authActionService: AuthActionService,
+    private alertService: AlertService
   ) {
     this.user.email = 'patelvirendra62@gmail.com';
     this.user.password = '1234567890';
@@ -36,9 +39,19 @@ export class LoginFormComponent implements OnInit {
         this.tokenService.saveTokenToLocalStorage(response.token);
         this.authActionService.emitAction({ action: AuthActionType.LOGIN });
         this.router.navigate(['/']);
+        this.alertService.showAlert({
+          message: 'Login Success',
+          duration: 5000,
+          alertType: 'success',
+        });
       },
-      error: (errorResponse) => {
+      error: (errorResponse: HttpErrorResponse) => {
         console.log(errorResponse);
+        this.alertService.showAlert({
+          message: errorResponse.error.error,
+          duration: 5000,
+          alertType: 'danger',
+        });
       },
     });
   }

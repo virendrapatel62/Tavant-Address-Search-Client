@@ -1,5 +1,9 @@
 <h1>Add Address</h1>
 
+<br>
+<div *ngIf='message' class="alert alert-light border">
+    {{message}}
+</div>
 <mat-form-field class="example-full-width">
     <mat-label>Type Address</mat-label>
     <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">

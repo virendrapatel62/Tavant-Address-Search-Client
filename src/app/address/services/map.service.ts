@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { pipe } from 'rxjs';
+import { pipe, merge, of } from 'rxjs';
 import { map, repeat } from 'rxjs/operators';
 import { AddressResponse } from '../models/address-response';
 
@@ -26,7 +26,7 @@ export class MapService {
     this.generateToken();
   }
 
-  getAddresses(address: string) {
+  getAddressesFromMap(address: string) {
     return this.http
       .get(`${this.baseAddressUrl}?address=${address}&itemCount=5`, {
         headers: {
@@ -38,6 +38,15 @@ export class MapService {
           return <AddressResponse[]>res.copResults;
         })
       );
+  }
+
+  getAddressFromServer(address: string) {
+    return this.http.get(`/api/address/search?address=${address}`).pipe(
+      map((res: any) => {
+        const list = <AddressResponse[]>res;
+        return list;
+      })
+    );
   }
 
   private generateToken() {

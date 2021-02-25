@@ -19,6 +19,7 @@ import { AddressComponent } from './components/address/address.component';
 
 import { MatIconModule } from '@angular/material/icon';
 import { FileUploadFormComponent } from './compoments/file-upload-form/file-upload-form.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { FileUploadFormComponent } from './compoments/file-upload-form/file-uplo
     HttpClientModule,
 
     MatIconModule,
+    MatSnackBarModule,
   ],
   providers: [
     MapService,

@@ -1,5 +1,6 @@
 import { HttpEvent, HttpEventType, HttpResponse } from '@angular/common/http';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { AlertService } from 'src/app/shared/services/alert.service';
 import { AddressResponse } from '../../models/address-response';
 import { AddressService } from '../../services/address.service';
 
@@ -14,7 +15,10 @@ export class FileUploadFormComponent implements OnInit {
 
   @Output('onSuccess')
   onSucces: EventEmitter<AddressResponse[]> = new EventEmitter();
-  constructor(private addressService: AddressService) {}
+  constructor(
+    private addressService: AddressService,
+    private alertService: AlertService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -34,6 +38,13 @@ export class FileUploadFormComponent implements OnInit {
         console.log({ body: event.body });
         form.reset();
         this.onSucces.emit(event.body.validAddresses);
+        const valid = event.body.validAddresses.length;
+        const invalid = event.body.invalidAddresses.length;
+        const message = `${valid} Address saved out of ${valid + invalid}`;
+        this.alertService.showAlert({
+          message: message,
+          duration: 5000,
+        });
       }
     });
   }

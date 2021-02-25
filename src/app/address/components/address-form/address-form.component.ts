@@ -6,6 +6,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
+import { AlertService } from 'src/app/shared/services/alert.service';
 import { AddressResponse } from '../../models/address-response';
 import { AddressService } from '../../services/address.service';
 import {
@@ -27,7 +28,10 @@ export class AddressFormComponent implements OnInit {
   @ViewChild('searchComponent')
   searchBox: AddressSearchComponent;
 
-  constructor(private addressService: AddressService) {}
+  constructor(
+    private addressService: AddressService,
+    private alertService: AlertService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -49,6 +53,10 @@ export class AddressFormComponent implements OnInit {
         this.childEvent.address = this.childEvent.address;
         this.childEvent.formControl.reset();
         this.onAddressChange.emit(address);
+        this.alertService.showAlert({
+          message: 'Address Saved..',
+          duration: 5000,
+        });
       },
       error: (err) => {
         console.error(err);

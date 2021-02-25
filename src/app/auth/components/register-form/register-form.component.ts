@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AlertService } from 'src/app/shared/services/alert.service';
 import {
   AuthActionService,
   AuthActionType,
@@ -20,16 +21,28 @@ export class RegisterFormComponent implements OnInit {
     private authService: AuthService,
     private tokenService: TokenService,
     private router: Router,
-    private authActionService: AuthActionService
+    private authActionService: AuthActionService,
+    private alertService: AlertService
   ) {
     this.user.email = 'patelvirendra62@gmail.com';
     this.user.name = 'Virendra Kumar Patel';
     this.user.password = '1234567890';
     this.user.password2 = '1234567890';
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.alertService);
+  }
 
   register() {
+    if (this.user.password != this.user.password2) {
+      this.alertService.showAlert({
+        message: 'Password not matched !',
+        duration: 5000,
+        alertType: 'danger',
+      });
+      return;
+    }
+
     this.authService.registerUser(this.user).subscribe({
       next: (response) => {
         console.log(response);
@@ -39,6 +52,11 @@ export class RegisterFormComponent implements OnInit {
       },
       error: (errorResponse) => {
         console.log(errorResponse);
+        this.alertService.showAlert({
+          message: errorResponse.error[0].defaultMessage,
+          duration: 5000,
+          alertType: 'danger',
+        });
       },
     });
   }
