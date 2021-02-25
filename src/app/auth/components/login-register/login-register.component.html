@@ -1,31 +1,42 @@
 <div class="container">
-    <div class="mt-4 pt-4">
-        <div class="col-lg-5 mx-auto shadow rounded p-4">
-            <mat-tab-group mat-align-tabs="center">
-                <mat-tab>
-                    <ng-template mat-tab-label>
-                        <span>Login </span>
-                        &nbsp;
-                        <mat-icon class="example-tab-icon">lock</mat-icon>
-                    </ng-template>
-                    <div class="p-3">
-                        <app-login-form></app-login-form>
-                    </div>
-                </mat-tab>
 
-                <mat-tab>
-                    <ng-template mat-tab-label>
-                        <span> Register</span>
-                        &nbsp;
-                        <mat-icon class="example-tab-icon">person_add</mat-icon>
-                    </ng-template>
-                    <div class="p-3">
-                        <app-register-form>
-                        </app-register-form>
-                    </div>
-                </mat-tab>
+    <div class="row mx-auto p-4">
+        <div class="col mx-auto">
+            <br>
+            <img class="mx-auto" src="/assets/map3.png" width="70%" alt="">
+        </div>
+        <!-- fomrs -->
+        <div class="col">
+            <div class="mt-4 pt-4">
+                <div class="col-lg-10 mx-auto shadow rounded p-4">
+                    <mat-tab-group mat-align-tabs="center">
+                        <mat-tab>
+                            <ng-template mat-tab-label>
+                                <span>Login </span>
+                                &nbsp;
+                                <mat-icon class="example-tab-icon">lock</mat-icon>
+                            </ng-template>
+                            <div class="p-3">
+                                <app-login-form></app-login-form>
 
-            </mat-tab-group>
+                            </div>
+                        </mat-tab>
+
+                        <mat-tab>
+                            <ng-template mat-tab-label>
+                                <span> Register</span>
+                                &nbsp;
+                                <mat-icon class="example-tab-icon">person_add</mat-icon>
+                            </ng-template>
+                            <div class="p-3">
+                                <app-register-form>
+                                </app-register-form>
+                            </div>
+                        </mat-tab>
+
+                    </mat-tab-group>
+                </div>
+            </div>
         </div>
     </div>
 </div>
